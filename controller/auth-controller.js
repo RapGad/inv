@@ -115,13 +115,13 @@ const loginUser = async(req,res)=>{
                 balance: checkIfUserExist.balance
             },
             process.env.MY_SECRET,
-            {expiresIn: '1h'}
+            {expiresIn: '24h'}
         )
         res.cookie('token', accessToken, {
-            maxAge: 60 * 60 * 1000,
+            maxAge: 24*60 * 60 * 1000,
             httpOnly: true,
             secure: true,
-            sameSite: 'strict'
+            sameSite: 'None'
         })
 
         res.status(200).json({
