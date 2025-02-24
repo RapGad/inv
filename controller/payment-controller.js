@@ -20,9 +20,13 @@ const paymentHandler = async(req, res) => {
       const { id, amount } = event.data.metadata;
       console.log('user id', id)
       console.log('Amount', amount)
-      sendTransaction('Deposit',amount,'Completed',id)
-
-      res.status(200).send("Success");
+      const result = await sendTransaction('Deposit',amount,'Completed',id)
+        if(result){
+        res.status(200).send("Success");
+        }
+        else{
+        res.status(400).send("Failed")
+        }
     }
     else {
       res.status(400).send("Event not recognized");
