@@ -9,8 +9,7 @@ const paymentHandler = async(req, res) => {
 
   
 /* ß */
-    console.log('hash',hash)
-    console.log('paystackSIgnature',paystackSignature)
+
 
     if (hash.toLowerCase() !== paystackSignature.toLowerCase()) {
       return res.status(400).send("Invalid signature");
@@ -19,6 +18,8 @@ const paymentHandler = async(req, res) => {
     const event = req.body;
     if (event.event === "charge.success") {
       const { id, amount } = event.data.metadata;
+      console.log('user id', id)
+      console.log('Amount', amount)
       sendTransaction('Deposit',amount,'Completed',id)
 
       res.status(200).send("Success");

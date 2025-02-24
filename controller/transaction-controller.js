@@ -3,7 +3,7 @@ const User = require("../models/user");
 const mongoose = require("mongoose");
 
 
-const sendTransaction = async (type, amount, status,phone,network,name, id) => {
+const sendTransaction = async (type, amount, status, id) => {
     const session = await mongoose.startSession();
     session.startTransaction();
     try {
