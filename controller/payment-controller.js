@@ -42,7 +42,7 @@ const initiatePayment = async (req, res) => {
                 amount: amount * 100, // Convert to kobo
                 currency: "GHS",
                 metadata: { id, amount },
-                callback_url: "https://localhost:5173/dashboard/content", // Redirect after payment
+                callback_url: "https://lambent-sprinkles-d18ce9.netlify.app/dashboard/content", // Redirect after payment
             },
             {
                 headers: {
