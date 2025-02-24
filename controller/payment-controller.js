@@ -9,8 +9,10 @@ const paymentHandler = async(req, res) => {
 
   
 /* ß */
+    console.log('hash',hash)
+    console.log('paystackSIgnature',paystackSignature)
 
-    if (hash !== paystackSignature) {
+    if (hash.toLowerCase() !== paystackSignature.toLowerCase()) {
       return res.status(400).send("Invalid signature");
     }
   
