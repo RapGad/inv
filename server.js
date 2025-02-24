@@ -61,15 +61,8 @@ const apiLimiter = rateLimit({
   });
   
 app.use(apiLimiter);
-app.use(cookieParser(process.env.MY_SECRET));
+app.use(cookieParser());
 
-app.use((req, res, next) => {
-    res.cookie('sessionId', 'secureValue', {
-        httpOnly: true,
-        sameSite: 'Strict' // ✅ Prevents CSRF attacks
-    });
-    next();
-});
 
      
 
