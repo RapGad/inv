@@ -21,9 +21,9 @@ const PORT = process.env.PORT;
 app.use(express.json())
 
 app.use(express.urlencoded({ extended: true }));
-const allowedOrigins = process.env.CLIENT_URL.split(',');
+const allowedOrigins = process.env.CLIENT_URL;
 
-app.use(cors({
+/* app.use(cors({
     origin: function (origin, callback) {
         console.log('CORS Origin:', origin);
         console.log('Allowed Origins:', allowedOrigins);
@@ -40,15 +40,15 @@ app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     optionsSuccessStatus: 200 // ✅ Required for cookies/auth
-}));
+})); */
 
-/* app.use(cors({
+app.use(cors({
     origin: allowedOrigins,  // Only allow frontend domain
     credentials: true,  // Allow cookies
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"]
 }));
- */
+
 
 app.set('trust proxy', 1)
 
