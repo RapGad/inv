@@ -29,11 +29,9 @@ const allowedOrigins = process.env.CLIENT_URL.split(',');
 
 app.use(cors({
     origin: function (origin, callback) {
-        console.log('CORS Origin:', origin);
-        console.log('Allowed Origins:', allowedOrigins);
+
 
         if (!origin || allowedOrigins.includes(origin.trim())) {
-            console.log('Allowed:', origin);
             callback(null, origin);
         } else {
             console.log('Blocked:', origin);
