@@ -155,6 +155,37 @@ const logoutUser = async(req,res)=>{
     })
 }
 
+const otpStore = {};
+
+const sendOtp = async(req,res)=>{
+    const { phone } = req.body;
+
+    try {
+        const user = await User.findOne({ phone });
+
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        // Generate 6-digit OTP
+        const otp = Math.floor(100000 + Math.random() * 900000);
+        otpStore[phone] = otp; // Store OTP temporarily
+
+        // Send OTP via Twilio
+        await client.messages.create({
+            body: `Your OTP is ${otp}`,
+            from: twilioPhone,
+            to: phone,
+        });
+
+        return res.status(200).json({ success: true, message: "OTP sent successfully" });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ success: false, message: "Error sending OTP" });
+    }
+}
 
 
-module.exports = {registerUser, loginUser,logoutUser}
+
+
+module.exports = {registerUser, loginUser,logoutUser,sendOtp}

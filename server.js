@@ -10,10 +10,14 @@ const {paymentHandler} = require('./controller/payment-controller')
 const userDetailsRouter = require('./routes/user-details-route')
 const investmentRouter = require('./routes/investmentRoute')
 const adminRouter = require('./routes/adminRoute')
+const twilio = require('twilio');
 
 
 
 const app = express();
+const accountSid = process.env.TWILIO_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const client = twilio(accountSid, authToken);
 
 
 
