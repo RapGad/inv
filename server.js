@@ -76,7 +76,7 @@ connectToDb();
 
 app.use('/user/auth',authRouter);
 app.use('/payment',paymentRouter)
-app.use('/payment/paystack/webhook',paymentHandler)
+//app.use('/payment/paystack/webhook',paymentHandler)
 app.use('/get',userDetailsRouter)
 app.use('/investment',investmentRouter)
 app.use('/admin',adminRouter)
