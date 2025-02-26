@@ -28,16 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 const allowedOrigins = process.env.CLIENT_URL.split(',');
 
 app.use(cors({
-    origin: function (origin, callback) {
-
-
-        if (!origin || allowedOrigins.includes(origin.trim())) {
-            callback(null, origin);
-        } else {
-            console.log('Blocked:', origin);
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
+    origin: allowedOrigins,
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
